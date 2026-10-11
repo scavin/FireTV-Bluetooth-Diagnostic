@@ -30,11 +30,11 @@
 
 ### 方法 B：GitHub Actions（无需本机 Android SDK）
 
-1. 创建一个 GitHub 空仓库，把本工程推送到其 `main` 分支（注意 `.github/workflows/build-apk.yml` 必须一并上传）。
-2. 打开仓库 **Actions > Build Android APK > Run workflow**，或等待推送触发。
+1. 向本仓库的 `main` 分支推送提交后，会自动触发 APK 编译；工作流位于 `.github/workflows/build-apk.yml`。
+2. 也可打开仓库 [Actions > Build Android APK](https://github.com/scavin/FireTV-Bluetooth-Diagnostic/actions/workflows/build-apk.yml)，点击 **Run workflow** 手动编译。
 3. 构建成功后，从该任务底部的 **Artifacts** 下载 `firetv-bluetooth-diagnostic-apk`，解压得到 `app-debug.apk`。
 
-工作流使用 Temurin JDK 17、Android SDK 35、Gradle 8.7，自动执行 `:app:assembleDebug`。上传至 GitHub 前请检查代码；无需添加任何密钥。
+工作流使用 Temurin JDK 17、Android SDK 35、Gradle 8.7，自动执行 `:app:assembleDebug`。SDK 初始化仅安装 `platform-tools`，不依赖已不可用的旧 `tools` 包；无需添加任何密钥。
 
 ### 方法 C：macOS 终端（已有 Android SDK 与 Gradle 8.7）
 
